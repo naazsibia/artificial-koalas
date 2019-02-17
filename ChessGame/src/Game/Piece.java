@@ -8,11 +8,14 @@ package Game;
 public abstract class Piece {
 	
 	private Position p;
-	private Boolean onBoard;
+	private Boolean onBoard, selected;
+	private String color;
 	
-	public Piece(int x, int y) {
+	public Piece(int x, int y, String color) {
 		this.p = new Position(x, y);
 		this.onBoard = true; //Every Piece must start on the chess board when created
+		this.selected = false;
+		this.color = color; //Should only ever be set to black or white
 	}
 	
 	public void removed() {
@@ -23,6 +26,10 @@ public abstract class Piece {
 		return this.onBoard;
 	}
 	
+	public Boolean isSelected() {
+		return this.selected;
+	}
+	
 	public Position getPosition() {
 		return this.p;
 	}
@@ -30,6 +37,10 @@ public abstract class Piece {
 	public void setPosition(int x, int y) {
 		this.p.setX(x);
 		this.p.setY(y);
+	}
+	
+	public String getColor() {
+		return this.color;
 	}
 	
 	public abstract void selectPiece();
