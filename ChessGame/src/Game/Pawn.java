@@ -18,17 +18,17 @@ public class Pawn extends Piece {
 	
 	public void selectPiece() {
 		this.selected = true;
-		private int currentX = this.getPosition().getX();
-		private int currentY = this.getPosition().getY();
+		int currentX = this.getPosition().getX();
+		int currentY = this.getPosition().getY();
 		
-		public Position[] validMoves = new Position[] {Position(currentX, currentY + 1)};
+		Position[] validMoves = new Position[] {new Position(currentX, currentY + 1)};
 		if (this.hasMoved == false) {
-			appendValue(validMoves, Position(currentX, currentY + 2));
+			validMoves[validMoves.length] = new Position(currentX, currentY + 2);
 		}
 		
-		public Position[] attackMoves = new Position[] {
-				Position(currentX + 1, currentY + 1),
-				Position(currentX - 1, currentY + 1)
+		Position[] attackMoves = new Position[] {
+				new Position(currentX + 1, currentY + 1),
+				new Position(currentX - 1, currentY + 1)
 		};
 		//TODO: Check if target in attack positions
 		
