@@ -8,6 +8,11 @@ package Game;
 
 public class Rook extends Piece {
 	
+	public Rook(int x, int y, String color) {
+		super(x, y, color);
+		// TODO Auto-generated constructor stub
+	}
+
 	public void selectPiece() {
 		this.selected = true;
 		Position[] valid = this.legalMoves();
@@ -22,18 +27,18 @@ public class Rook extends Piece {
 		// TODO: Do not return any Position that is blocked by another Piece
 		
 		
-		Position[] legal = new Position[];
+		Position[] legal = new Position[] {};
 		
 		int verticalPos = 0;
 		int horizontalPos = 0;
 		
 		while (verticalPos <= 7) {
-			appendValue(legal, Position(this.getPosition().getX(), verticalPos));
+			legal[legal.length] = new Position(this.getPosition().getX(), verticalPos);
 			verticalPos = verticalPos + 1;
 		}
 		
 		while (horizontalPos <= 7) {
-			appendValue(legal, Position(horizontalPos, this.getPosition().getY()));
+			legal[legal.length] = new Position(horizontalPos, this.getPosition().getY());
 			horizontalPos = horizontalPos + 1;
 		}
 		
