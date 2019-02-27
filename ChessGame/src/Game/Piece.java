@@ -39,6 +39,9 @@ public abstract class Piece {
 		this.p.setY(y);
 	}
 	
+	public void setSelected(boolean selected) {
+		this.selected = selected;
+	}
 	public String getColor() {
 		return this.color;
 	}
