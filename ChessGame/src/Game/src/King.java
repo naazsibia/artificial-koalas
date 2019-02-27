@@ -1,4 +1,4 @@
-package Game;
+
 /**
  * 
  */
@@ -20,7 +20,7 @@ public class King extends Piece{
 		safe = true;
 		checkmated = false;
 	}
-	
+
 	/**
 	 * Returns true iff King is safe.
 	 * @return safe: a boolean that represents whether the king is about to be checkmated
