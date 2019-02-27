@@ -11,25 +11,25 @@ public class Pawn extends Piece {
 	//Pawns can move up to 2 spaces on their first move. The variable hasMoved will keep track of if the first move has happened.
 	private Boolean hasMoved;
 	
-	public Pawn(int x, int y) {
-		super(x, y);
+	public Pawn(int x, int y, String color) {
+		super(x, y, color);
 		this.hasMoved = false; //At the start of the game, the pawn has not yet moved
 	}
 	
 	public void selectPiece() {
-		this.selected = true;
-		private int currentX = this.getPosition().getX();
-		private int currentY = this.getPosition().getY();
+		this.setSelected(true);
+		int currentX = this.getPosition().getX();
+		int currentY = this.getPosition().getY();
 		
-		public Position[] validMoves = new Position[] {Position(currentX, currentY + 1)};
+		Position[] validMoves = new Position[4];
 		if (this.hasMoved == false) {
-			appendValue(validMoves, Position(currentX, currentY + 2));
+			validMoves[0] = new Position(currentX, currentY + 2);
 		}
 		
-		public Position[] attackMoves = new Position[] {
-				Position(currentX + 1, currentY + 1),
-				Position(currentX - 1, currentY + 1)
-		};
+		Position[] attackMoves = new Position[2];
+		attackMoves[0] = new Position(currentX + 1, currentY + 1);
+		attackMoves[1] = new Position(currentX - 1, currentY + 1);
+	
 		//TODO: Check if target in attack positions
 		
 		//TODO: Draw indicator on all valid move positions
