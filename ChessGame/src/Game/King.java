@@ -1,3 +1,4 @@
+package Game;
 /**
  * 
  */
@@ -14,8 +15,8 @@ public class King extends Piece{
 	/**
 	 * Makes a new King with the given Position and color.
 	 */
-	public King(Position position, int color) {
-		super(position, color);
+	public King(int x, int y, String color) {
+		super(x, y, color);
 		safe = true;
 		checkmated = false;
 	}
@@ -32,7 +33,7 @@ public class King extends Piece{
 	 * @return checkmate: a boolean that represents whether the king has been checkmated
 	 */
 	public boolean isCheckmated() {
-		return checkmate;
+		return checkmated;
 	}
 	
 	/**
@@ -56,5 +57,11 @@ public class King extends Piece{
 		if(!checkmated) {
 			checkmated = true;
 		}
+	}
+
+	@Override
+	public void selectPiece() {
+		// TODO Auto-generated method stub
+		
 	}	
 }
