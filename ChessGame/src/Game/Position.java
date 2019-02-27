@@ -1,4 +1,4 @@
-package Game;
+package ChessGame.src.Game;
 /**
  * This class stores the 2D Positon of an object. 
  * @author naazsibia
