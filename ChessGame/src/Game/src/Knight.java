@@ -34,4 +34,9 @@ public class Knight extends Piece {
 		//TODO: Draw different indicator on all valid attack positions
 	}
 	
+	@Override
+	public String toString() {
+		return "Knight";
+	}
+	
 }
