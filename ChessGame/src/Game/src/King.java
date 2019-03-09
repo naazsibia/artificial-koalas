@@ -1,8 +1,3 @@
-
-/**
- * 
- */
-
 /**
  * This class allows making, selecting, moving, and killing a King. It will also help warn users in
  * the game if a king is about to be checkmated. 
