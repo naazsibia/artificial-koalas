@@ -1,4 +1,8 @@
 /**
+ * 
+ */
+
+/**
  * This class allows making, selecting, moving, and killing a King. It will also help warn users in
  * the game if a king is about to be checkmated. 
  * @author naazsibia
@@ -52,12 +56,6 @@ public class King extends Piece{
 		if(!checkmated) {
 			checkmated = true;
 		}
-	}
-
-	@Override
-	public void selectPiece() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

@@ -5,3 +5,6 @@
 /Position.class
 /Queen.class
 /PieceHandler.class
+/Board.class
+/Game.class
+/Knight.class

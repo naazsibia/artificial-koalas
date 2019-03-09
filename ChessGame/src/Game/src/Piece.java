@@ -1,3 +1,4 @@
+package Game.src;
 /**
  * This abstract class stores the position and 
  * status of a Piece. 
@@ -45,7 +46,6 @@ public abstract class Piece {
 		return this.color;
 	}
 	
-	public abstract void selectPiece();
 	public abstract String toString();
 	//TODO: Drawing methods?
 }
