@@ -46,6 +46,6 @@ public abstract class Piece {
 	}
 	
 	public abstract void selectPiece();
-	
+	public abstract String toString();
 	//TODO: Drawing methods?
 }

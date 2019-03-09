@@ -34,5 +34,10 @@ public class Pawn extends Piece {
 		//TODO: Draw indicator on all valid move positions
 		//TODO: Draw indicator on all valid attack positions
 	}
+
+	@Override
+	public String toString() {
+		return "Pawn";
+	}
 	
 }
