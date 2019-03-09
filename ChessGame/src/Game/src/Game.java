@@ -1,3 +1,4 @@
+package Game.src;
 /**
  * This class stores the values necessary
  * to any given game of Chess being played.

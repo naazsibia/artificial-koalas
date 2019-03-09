@@ -1,3 +1,4 @@
+package Game.src;
 /**
  * This class is a child of the Piece class, and
  * contains the methods of a Pawn

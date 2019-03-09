@@ -1,4 +1,4 @@
-package src;
+package Game.src;
 /**
  * This class functions as the game board and stores
  * information on the current board state
