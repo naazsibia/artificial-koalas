@@ -60,12 +60,6 @@ public class King extends Piece{
 	}
 
 	@Override
-	public void selectPiece() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public String toString() {
 		return "King";
 	}	

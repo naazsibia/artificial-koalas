@@ -11,12 +11,6 @@ public class Queen extends Piece {
 	}
 
 	@Override
-	public void selectPiece() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public String toString() {
 		return "Queen";
 	}

@@ -46,7 +46,6 @@ public abstract class Piece {
 		return this.color;
 	}
 	
-	public abstract void selectPiece();
 	public abstract String toString();
 	//TODO: Drawing methods?
 }
