@@ -1,4 +1,3 @@
-package Game.src;
 /**
  * This class allows making, selecting, moving, and killing a Bishop. 
  * @author zuqing li

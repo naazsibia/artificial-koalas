@@ -1,4 +1,3 @@
-package Game.src;
 /**
  * This is a child of the Piece class, and
  * contains the methods of a Rook
