@@ -16,22 +16,24 @@ public class PieceButton extends Button{
 	private Position position;
 	private boolean selected;
 	private boolean canSelect;
+	private int color;
 	/**
 	 * Makes a new PieceButton at a given position
 	 */
-	public PieceButton(Position position, boolean canSelect) {
+	public PieceButton(Position position, boolean canSelect, int color) {
+		this(position, canSelect, null, color);
+	}
+	
+	/**
+	 * Makes a new PieceButton at a given position
+	 */
+	public PieceButton(Position position, boolean canSelect, Piece piece, int color) {
 		this.position = position;
-		this.piece = null; //by default
+		this.piece = piece; 
 		this.canSelect = canSelect;
-		Image image = new Image(this.getClass().getResource(piece.toString() + ".png").toString());
-		ImageView iv = new ImageView(image);
-		this.setId(piece.toString());
-		this.setGraphic(iv);
-		setMinWidth(image.getWidth());
-		setMaxWidth(image.getWidth());
-		setMinHeight(image.getHeight());
-		setMaxHeight(image.getHeight());
-		
+		if(piece == null) setId("null");
+		else setId(piece.toString());
+		changeImage();
 		if(!canSelect) {
 			this.setDisable(true);
 		}
@@ -39,6 +41,7 @@ public class PieceButton extends Button{
 			this.setDisable(false);
 		}
 	}
+	
 	/**
 	 * @return boolean canSelect which is true iff this button can be selected
 	 */
@@ -68,6 +71,13 @@ public class PieceButton extends Button{
 	 */
 	public void setPiece(Piece piece) {
 		this.piece = piece;
+		if(piece == null) {
+			setId("null");
+		}
+		else {
+			setId(piece.toString());
+		}
+		changeImage();
 	}
 	/**
 	 * @return the position of this button on the chess board
@@ -103,10 +113,16 @@ public class PieceButton extends Button{
 			this.setGraphic(iv);
 			setSelected(false);
 			changeImage();
+			if(piece == null) {
+				setDisable(true);
+				canSelect = false;
+			}
 			return false;
 		}
 		changeImage();
 		setSelected(true);
+		setDisable(false);
+		canSelect = true;
 		return true;
 	}
 	/**
@@ -118,21 +134,39 @@ public class PieceButton extends Button{
 				Image image = new Image(this.getClass().getResource(piece.toString() + "Selected.png").toString());
 				ImageView iv = new ImageView(image);
 				this.setGraphic(iv);
+				setMinWidth(image.getWidth());
+				setMaxWidth(image.getWidth());
+				setMinHeight(image.getHeight());
+				setMaxHeight(image.getHeight());
 				return;
 			}
 			Image image = new Image(this.getClass().getResource("blue.png").toString());
 			ImageView iv = new ImageView(image);
 			this.setGraphic(iv);
+			setMinWidth(image.getWidth());
+			setMaxWidth(image.getWidth());
+			setMinHeight(image.getHeight());
+			setMaxHeight(image.getHeight());
 			return;
 		}
 		if(piece != null) {
 			Image image = new Image(this.getClass().getResource(piece.toString() + ".png").toString());
 			ImageView iv = new ImageView(image);
 			this.setGraphic(iv);
+			setMinWidth(image.getWidth());
+			setMaxWidth(image.getWidth());
+			setMinHeight(image.getHeight());
+			setMaxHeight(image.getHeight());
 			return;
 		}
-		Image image = new Image(this.getClass().getResource("white.png").toString());
+		Image image;
+		if(color == 0) image = new Image(this.getClass().getResource("white.png").toString());
+		else image = new Image(this.getClass().getResource("black.png").toString());
 		ImageView iv = new ImageView(image);
+		setMinWidth(image.getWidth());
+		setMaxWidth(image.getWidth());
+		setMinHeight(image.getHeight());
+		setMaxHeight(image.getHeight());
 		this.setGraphic(iv);
 		return;
 		
