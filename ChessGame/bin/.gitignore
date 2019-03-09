@@ -8,6 +8,4 @@
 /Board.class
 /Game.class
 /Knight.class
-/.gitignore
-/Bishop.class
-/Rook.class
+/Game/

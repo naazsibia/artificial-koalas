@@ -7,26 +7,11 @@
 public abstract class Piece {
 	
 	private Position p;
-	private Boolean onBoard, selected;
 	private String color;
 	
 	public Piece(int x, int y, String color) {
 		this.p = new Position(x, y);
-		this.onBoard = true; //Every Piece must start on the chess board when created
-		this.selected = false;
 		this.color = color; //Should only ever be set to black or white
-	}
-	
-	public void removed() {
-		this.onBoard = false;
-	}
-	
-	public boolean isRemoved() {
-		return this.onBoard;
-	}
-	
-	public Boolean isSelected() {
-		return this.selected;
 	}
 	
 	public Position getPosition() {
@@ -38,13 +23,9 @@ public abstract class Piece {
 		this.p.setY(y);
 	}
 	
-	public void setSelected(boolean selected) {
-		this.selected = selected;
-	}
 	public String getColor() {
 		return this.color;
 	}
 	
 	public abstract String toString();
-	//TODO: Drawing methods?
 }
