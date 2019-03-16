@@ -17,6 +17,7 @@ public class Board {
 			PieceButton[] row = new PieceButton[8];
 			for (int y = 0; y < 8; y = y+1) {
 				row[y] = new PieceButton(new Position(y, x), false, defaultPiece(y, x), (x+y)%2);
+
 			}
 			this.boardModel[x] = row;
 		}
