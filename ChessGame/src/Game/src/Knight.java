@@ -13,7 +13,10 @@ public class Knight extends Piece {
 	
 	@Override
 	public String toString() {
-		return "Knight";
+		if(this.getColor().equals("white")) {
+			return "WKN";
+		}
+		return "BKN";
 	}
 	
 }

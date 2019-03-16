@@ -13,7 +13,10 @@ public class Pawn extends Piece {
 
 	@Override
 	public String toString() {
-		return "Pawn";
+		if(this.getColor() == "white") {
+			return "WP";
+		}
+		return "BP";
 	}
 	
 }
