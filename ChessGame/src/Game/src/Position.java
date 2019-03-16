@@ -1,4 +1,3 @@
-package Game.src;
 /**
  * This class stores the 2D Positon of an object. 
  * @author naazsibia
