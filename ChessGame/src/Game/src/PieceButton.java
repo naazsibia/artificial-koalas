@@ -1,4 +1,3 @@
-package Game.src;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -132,7 +131,7 @@ public class PieceButton extends Button{
 	public void changeImage() {
 		if(isSelected()) {
 			if(piece != null) {
-				Image image = new Image(this.getClass().getResource(piece.toString() + "Selected.png").toString());
+				Image image = new Image(this.getClass().getResource(piece.toString() + "S" + this.toString() + ".jpg").toString());
 				ImageView iv = new ImageView(image);
 				this.setGraphic(iv);
 				setMinWidth(image.getWidth());
@@ -141,7 +140,9 @@ public class PieceButton extends Button{
 				setMaxHeight(image.getHeight());
 				return;
 			}
-			Image image = new Image(this.getClass().getResource("blue.png").toString());
+			Image image;
+			if(color == 0) image = new Image(this.getClass().getResource("blue.jpg").toString());
+			else image = new Image(this.getClass().getResource("maroon.jpg").toString());
 			ImageView iv = new ImageView(image);
 			this.setGraphic(iv);
 			setMinWidth(image.getWidth());
@@ -151,7 +152,7 @@ public class PieceButton extends Button{
 			return;
 		}
 		if(piece != null) {
-			Image image = new Image(this.getClass().getResource(piece.toString() + ".png").toString());
+			Image image = new Image(this.getClass().getResource(piece.toString() + "U" + this.toString() + ".jpg").toString());
 			ImageView iv = new ImageView(image);
 			this.setGraphic(iv);
 			setMinWidth(image.getWidth());
@@ -161,8 +162,8 @@ public class PieceButton extends Button{
 			return;
 		}
 		Image image;
-		if(color == 0) image = new Image(this.getClass().getResource("white.png").toString());
-		else image = new Image(this.getClass().getResource("black.png").toString());
+		if(color == 0) image = new Image(this.getClass().getResource("white.jpg").toString());
+		else image = new Image(this.getClass().getResource("black.jpg").toString());
 		ImageView iv = new ImageView(image);
 		setMinWidth(image.getWidth());
 		setMaxWidth(image.getWidth());

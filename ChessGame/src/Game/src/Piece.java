@@ -1,4 +1,3 @@
-package Game.src;
 /**
  * This abstract class stores the position and 
  * status of a Piece. 

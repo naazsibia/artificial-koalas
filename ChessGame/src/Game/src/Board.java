@@ -1,4 +1,3 @@
-package Game.src;
 /**
  * This class functions as the game board and stores
  * information on the current board state
@@ -17,7 +16,7 @@ public class Board {
 		for (int x = 0; x < 8; x = x+1) {
 			PieceButton[] column = new PieceButton[8];
 			for (int y = 0; y < 8; y = y+1) {
-				column[y] = new PieceButton(new Position(x, y), false);
+				column[y] = new PieceButton(new Position(x, y), false, (x + y) % 2 );
 			}
 			this.boardModel[x] = column;
 		}
