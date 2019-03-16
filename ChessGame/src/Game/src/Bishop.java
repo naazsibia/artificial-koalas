@@ -1,4 +1,3 @@
-package Game.src;
 /**
  * This class allows making, selecting, moving, and killing a Bishop. 
  * @author zuqing li
@@ -13,6 +12,9 @@ public class Bishop extends Piece{
 	
 	@Override
 	public String toString() {
-		return "Bishop";
+		if(this.getColor().equals("white")) {
+			return "WB";
+		}
+		return "BB";
 	}
 }

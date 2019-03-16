@@ -1,4 +1,3 @@
-package Game.src;
 /**
  * This class is a child of the Piece class, and
  * contains the methods of a Knight piece in Chess.
@@ -14,7 +13,10 @@ public class Knight extends Piece {
 	
 	@Override
 	public String toString() {
-		return "Knight";
+		if(this.getColor().equals("white")) {
+			return "WKN";
+		}
+		return "BKN";
 	}
 	
 }

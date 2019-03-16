@@ -1,4 +1,3 @@
-package Game.src;
 /**
  * This is a child of the Piece class, and
  * contains the methods of a Rook
@@ -14,6 +13,9 @@ public class Rook extends Piece {
 	
 	@Override
 	public String toString(){
-		return "Rook";
+		if(this.getColor().equals("white")) {
+			return "WR";
+		}
+		return "BR";
 	}
 }
