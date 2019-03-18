@@ -31,6 +31,7 @@ public class PieceButton extends Button{
 		this.position = position;
 		this.piece = piece; 
 		this.canSelect = canSelect;
+		this.color = color;
 		if(piece == null) setId("null");
 		else setId(piece.toString());
 		changeImage();
@@ -151,19 +152,20 @@ public class PieceButton extends Button{
 			setMaxHeight(image.getHeight());
 			return;
 		}
-		if(piece != null) {
-			Image image = new Image(this.getClass().getResource(piece.toString() + "U" + this.toString() + ".jpg").toString());
-			ImageView iv = new ImageView(image);
-			this.setGraphic(iv);
-			setMinWidth(image.getWidth());
-			setMaxWidth(image.getWidth());
-			setMinHeight(image.getHeight());
-			setMaxHeight(image.getHeight());
-			return;
-		}
 		Image image;
-		if(color == 0) image = new Image(this.getClass().getResource("white.jpg").toString());
-		else image = new Image(this.getClass().getResource("black.jpg").toString());
+		if(piece != null) {
+			if (color == 0) {
+				image = new Image(this.getClass().getResource(piece.toString() + "UW.jpg").toString());
+			}else {
+				image = new Image(this.getClass().getResource(piece.toString() + "UB.jpg").toString());
+			}
+		} else {
+			if(color == 0) {
+				image = new Image(this.getClass().getResource("white.jpg").toString());
+			} else {
+				image = new Image(this.getClass().getResource("black.jpg").toString());
+			}
+		}
 		ImageView iv = new ImageView(image);
 		setMinWidth(image.getWidth());
 		setMaxWidth(image.getWidth());
@@ -171,7 +173,5 @@ public class PieceButton extends Button{
 		setMaxHeight(image.getHeight());
 		this.setGraphic(iv);
 		return;
-		
 	}
-
 }

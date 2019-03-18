@@ -20,7 +20,7 @@ public class View {
 		this.mainPanel = new MainPanel(this);
 
 		BorderPane root = new BorderPane();
-		root.setPrefSize(1200, 1200);
+		root.setPrefSize(1000, 1000);
 		root.setCenter(this.chessPanel);
 		root.setLeft(this.mainPanel);
 

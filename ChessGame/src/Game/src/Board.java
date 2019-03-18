@@ -13,12 +13,20 @@ public class Board {
 	public Board() {
 		this.boardModel = new PieceButton[8][8];
 		// Create 64 PieceButtons, one for each position on the board 
+		boolean isWhite = true;
 		for (int x = 0; x < 8; x = x+1) {
 			PieceButton[] row = new PieceButton[8];
 			for (int y = 0; y < 8; y = y+1) {
-				row[y] = new PieceButton(new Position(y, x), false, defaultPiece(y, x), (x+y)%2);
+				if (isWhite) {
+					row[y] = new PieceButton(new Position(y, x), false, defaultPiece(y, x), 0);
+				} 
+				else {
+					row[y] = new PieceButton(new Position(y, x), false, defaultPiece(y, x), 1);
+				}
+				isWhite = !isWhite;
 			}
 			this.boardModel[x] = row;
+			isWhite = !isWhite;
 		}
 		
 		this.currentPlayer = 0;
@@ -57,7 +65,7 @@ public class Board {
 		//If the Piece is in the first 2, or last 2 rows, there will be a piece there by default
 		if(x == 0 || x == 1 || x == 6 || x == 7) {
 		
-			// By defult the colour of the piece is black, if it is in the last 2 rows it is white
+			// By default the colour of the piece is black, if it is in the last 2 rows it is white
 			String colour = "black";
 			if(x == 6 || x == 7) {
 				colour = "white";

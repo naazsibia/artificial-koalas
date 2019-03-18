@@ -12,7 +12,7 @@ public class DefinitelyNotAChessClone extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		this.board = null; //TODO: Change this to a new Board when Board actually works
+		this.board = new Board();
 		this.view = new View(board, stage);
 	}
 	
