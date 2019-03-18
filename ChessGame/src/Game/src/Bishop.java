@@ -12,6 +12,9 @@ public class Bishop extends Piece{
 	
 	@Override
 	public String toString() {
-		return "Bishop";
+		if(this.getColor().equals("white")) {
+			return "WB";
+		}
+		return "BB";
 	}
 }

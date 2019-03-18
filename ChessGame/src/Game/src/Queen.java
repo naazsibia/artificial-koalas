@@ -11,7 +11,10 @@ public class Queen extends Piece {
 
 	@Override
 	public String toString() {
-		return "Queen";
+		if(this.getColor().equals("white")) {
+			return "WQ";
+		}
+		return "BQ";
 	}
 
 }
