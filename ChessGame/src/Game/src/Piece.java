@@ -28,4 +28,6 @@ public abstract class Piece {
 	}
 	
 	public abstract String toString();
+	
+	public abstract String type();
 }

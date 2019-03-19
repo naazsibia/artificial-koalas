@@ -18,5 +18,11 @@ public class Knight extends Piece {
 		}
 		return "BKN";
 	}
+
+	@Override
+	public String type() {
+		// TODO Auto-generated method stub
+		return "Knight";
+	}
 	
 }

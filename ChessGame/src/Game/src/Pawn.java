@@ -18,5 +18,11 @@ public class Pawn extends Piece {
 		}
 		return "BP";
 	}
+
+	@Override
+	public String type() {
+		// TODO Auto-generated method stub
+		return "Pawn";
+	}
 	
 }

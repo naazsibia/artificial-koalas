@@ -17,4 +17,10 @@ public class Queen extends Piece {
 		return "BQ";
 	}
 
+	@Override
+	public String type() {
+		// TODO Auto-generated method stub
+		return "Queen";
+	}
+
 }

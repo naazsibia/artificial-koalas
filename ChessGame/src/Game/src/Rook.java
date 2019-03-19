@@ -18,4 +18,10 @@ public class Rook extends Piece {
 		}
 		return "BR";
 	}
+
+	@Override
+	public String type() {
+		// TODO Auto-generated method stub
+		return "Rook";
+	}
 }

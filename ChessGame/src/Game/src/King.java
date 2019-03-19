@@ -60,5 +60,13 @@ public class King extends Piece{
 			return "WK";
 		}
 		return "BK";
-	}	
+	}
+
+	@Override
+	public String type() {
+		// TODO Auto-generated method stub
+		return "King";
+	}
+	
+	
 }
