@@ -40,7 +40,7 @@ public class RookHandler extends PieceHandler {
 			Piece pieceHere = boardModel[rowToSelect][col].getPiece();
 			if( pieceHere != null) {
 				pieceFound = true; // we stop
-				if(pieceHere.getColor() != piece.getColor()) button.select(); // select opponent
+				if(pieceHere.getColor() != piece.getColor()) boardModel[rowToSelect][col].select(); // select opponent
 				
 			}
 			else {
@@ -56,7 +56,7 @@ public class RookHandler extends PieceHandler {
 			Piece pieceHere = boardModel[rowToSelect][col].getPiece();
 			if(boardModel[rowToSelect][col].getPiece() != null) {
 				pieceFound = true; // we stop
-				if(pieceHere.getColor() != piece.getColor()) button.select();
+				if(pieceHere.getColor() != piece.getColor()) boardModel[rowToSelect][col].select();
 			}
 
 			else {
@@ -72,7 +72,7 @@ public class RookHandler extends PieceHandler {
 			Piece pieceHere = boardModel[row][colToSelect].getPiece();
 			if(boardModel[row][colToSelect].getPiece() != null) {
 				pieceFound = true;
-				if(pieceHere.getColor() != piece.getColor()) button.select();
+				if(pieceHere.getColor() != piece.getColor()) boardModel[row][colToSelect].select();
 			}
 			
 			else {
@@ -88,7 +88,7 @@ public class RookHandler extends PieceHandler {
 			Piece pieceHere = boardModel[row][colToSelect].getPiece();
 			if(boardModel[row][colToSelect].getPiece() != null) {
 				pieceFound = true; // 
-				if(pieceHere.getColor() != piece.getColor()) button.select();
+				if(pieceHere.getColor() != piece.getColor()) boardModel[row][colToSelect].select();
 			}
 			else {
 				boardModel[row][colToSelect].select(); // select piece
