@@ -33,7 +33,7 @@ public class PieceButton extends Button{
 		this.canSelect = canSelect;
 		this.color = color;
 		if(piece == null) setId("null");
-		else setId(piece.toString());
+		else setId(piece.type());
 		changeImage();
 		if(!canSelect) {
 			this.setDisable(true);
@@ -76,7 +76,7 @@ public class PieceButton extends Button{
 			setId("null");
 		}
 		else {
-			setId(piece.toString());
+			setId(piece.type());
 		}
 		changeImage();
 	}
@@ -108,8 +108,21 @@ public class PieceButton extends Button{
 	 * @return whether true iff button is selected
 	 */
 	public boolean select() {
+		if(piece == null) {
+			if(isSelected()) {
+				setSelected(false);
+				changeImage();
+				return false;
+			}
+			else {
+				setSelected(true);
+				changeImage();
+				return false;
+			}
+		}
 		if(isSelected()) {
-			Image image = new Image(this.getClass().getResource(piece.toString() + ".png").toString());
+			System.out.println(piece.toString() + "S" + toString() + ".jpg");
+			Image image = new Image(this.getClass().getResource(piece.toString() + "S" + toString() + ".jpg").toString());
 			ImageView iv = new ImageView(image);
 			this.setGraphic(iv);
 			setSelected(false);
@@ -126,6 +139,20 @@ public class PieceButton extends Button{
 		canSelect = true;
 		return true;
 	}
+	/**
+	 * @return the color
+	 */
+	public int getColor() {
+		return color;
+	}
+
+	/**
+	 * @param color the color to set
+	 */
+	public void setColor(int color) {
+		this.color = color;
+	}
+
 	/**
 	 * Change the image of this button according to whether it is selected or unselected.
 	 */
@@ -173,5 +200,9 @@ public class PieceButton extends Button{
 		setMaxHeight(image.getHeight());
 		this.setGraphic(iv);
 		return;
+	}
+	public String toString() {
+		if(color == 0) return "W";
+		return "B";
 	}
 }
