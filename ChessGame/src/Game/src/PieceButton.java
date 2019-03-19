@@ -120,23 +120,14 @@ public class PieceButton extends Button{
 				return false;
 			}
 		}
+		// piece is not null
 		if(isSelected()) {
-			System.out.println(piece.toString() + "S" + toString() + ".jpg");
-			Image image = new Image(this.getClass().getResource(piece.toString() + "S" + toString() + ".jpg").toString());
-			ImageView iv = new ImageView(image);
-			this.setGraphic(iv);
 			setSelected(false);
 			changeImage();
-			if(piece == null) {
-				setDisable(true);
-				canSelect = false;
-			}
 			return false;
 		}
-		changeImage();
 		setSelected(true);
-		setDisable(false);
-		canSelect = true;
+		changeImage();
 		return true;
 	}
 	/**
@@ -186,7 +177,8 @@ public class PieceButton extends Button{
 			}else {
 				image = new Image(this.getClass().getResource(piece.toString() + "UB.jpg").toString());
 			}
-		} else {
+		} 
+		else {
 			if(color == 0) {
 				image = new Image(this.getClass().getResource("white.jpg").toString());
 			} else {
