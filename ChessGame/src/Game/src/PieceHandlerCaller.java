@@ -17,12 +17,12 @@ public class PieceHandlerCaller {
 		EventHandler<ActionEvent> queen = new QueenHandler(board);
 		EventHandler<ActionEvent> king = new KingHandler(board);
 		EventHandler<ActionEvent> nullHandler = new NullHandler(board);
-		pieceHandlers.put("pawn", pawn);
-		pieceHandlers.put("knight", knight);
-		pieceHandlers.put("rook", rook);
-		pieceHandlers.put("bishop", bishop);
-		pieceHandlers.put("queen", queen);
-		pieceHandlers.put("kind", king);
+		pieceHandlers.put("Pawn", pawn);
+		pieceHandlers.put("Knight", knight);
+		pieceHandlers.put("Rook", rook);
+		pieceHandlers.put("Bishop", bishop);
+		pieceHandlers.put("Queen", queen);
+		pieceHandlers.put("King", king);
 		pieceHandlers.put("null", nullHandler);
 	}
 	/**
