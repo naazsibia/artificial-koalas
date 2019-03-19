@@ -11,14 +11,14 @@ import javafx.event.ActionEvent;
 public class PawnHandler extends PieceHandler {
 
 	/**
+	 * This makes a new PawnHandler with the given board
 	 * @param board
 	 */
 	public PawnHandler(Board board) {
 		super(board);
 	}
 
-	/* (non-Javadoc)
-	 * @see javafx.event.EventHandler#handle(javafx.event.Event)
+	/* Handles the event in which a Pawn is clicked
 	 */
 
 	public void handle(ActionEvent event) {
@@ -34,9 +34,8 @@ public class PawnHandler extends PieceHandler {
 		Piece piece = button.getPiece();
 		int row = button.getPosition().getX();
 		int col = button.getPosition().getY();
-		boolean isBlack = piece.getColor().equals("Black");
 		button.select(); 
-		if(isBlack) { 
+		if(piece.getColor().equals("black")) { 
 			// select button below if no piece on there already
 			if(row < 7 && boardModel[row + 1][col].getPiece() == null) {
 				boardModel[row + 1][col].select();
@@ -47,12 +46,12 @@ public class PawnHandler extends PieceHandler {
 			// check if you can attack the bottom left
 			if(row < 7 && col > 0) {
 				Piece bottomLeftPiece = boardModel[row + 1][col - 1].getPiece();
-				if(bottomLeftPiece.getColor().equals("white")) boardModel[row + 1][col].select();
+				if(bottomLeftPiece != null && bottomLeftPiece.getColor().equals("white")) boardModel[row + 1][col - 1].select();
 			}
 			// check if you can attack the bottom right 
 			if(row < 7 && col < 7) {
 				Piece bottomRightPiece = boardModel[row + 1][col + 1].getPiece();
-				if(bottomRightPiece.getColor().equals("white")) boardModel[row + 1][col + 1].select();
+				if(bottomRightPiece != null && bottomRightPiece.getColor().equals("white")) boardModel[row + 1][col + 1].select();
 			}
 		}
 		else { // select button above if no piece on there already
@@ -65,12 +64,12 @@ public class PawnHandler extends PieceHandler {
 			//check if you can attack top left 
 			if(row > 0 && col > 0) {
 				Piece topLeftPiece = boardModel[row - 1][col - 1].getPiece();
-				if(topLeftPiece.getColor().equals("black")) boardModel[row - 1][col - 1].select();
+				if(topLeftPiece != null && topLeftPiece.getColor().equals("black")) boardModel[row - 1][col - 1].select();
 			}
 			//check if you can attack top right
 			if(row > 0 && col < 7) {
 				Piece topRightPiece = boardModel[row - 1][col + 1].getPiece();
-				if(topRightPiece.getColor().equals("black")) boardModel[row - 1][col + 1].select();
+				if(topRightPiece != null  && topRightPiece.getColor().equals("black")) boardModel[row - 1][col + 1].select();
 			}
 		}
 	
