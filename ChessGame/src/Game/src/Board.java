@@ -13,6 +13,7 @@ public class Board implements EventHandler<ActionEvent> {
 	private int currentPlayer;
 	private PieceButton selectedPiece;
 	private PieceHandlerCaller buttonHandler; 
+
 	public Board() {
 		this.boardModel = new PieceButton[8][8];
 		buttonHandler = new PieceHandlerCaller(this);
@@ -33,11 +34,13 @@ public class Board implements EventHandler<ActionEvent> {
 			this.boardModel[x] = row;
 			isWhite = !isWhite;
 		}
-		
+
 		this.currentPlayer = 0;
 		this.selectedPiece = null;
 	}
-	
+
+
+
 	public void switchTurn() {
 		if(this.currentPlayer == 0) {
 			this.currentPlayer = 1;
@@ -45,40 +48,40 @@ public class Board implements EventHandler<ActionEvent> {
 			this.currentPlayer = 0;
 		}
 	}
-	
+
 	public PieceButton[][] getBoardModel() {
 		return this.boardModel;
 	}
-	
+
 	public int getCurrentPlayer() {
 		return this.currentPlayer;
 	}
-	
+
 	public PieceButton getSelectedPiece() {
 		return this.selectedPiece;
 	}
-	
+
 	public void setSelectedPiece(PieceButton pb) {
 		this.selectedPiece = pb;
 	}
-	
+
 	private Piece defaultPiece(int x, int y) {
 		// This helper method gives the Piece that is the given position at the start of the game.
 		// By default the Piece is null
 		Piece piece = null;
-		
+
 		//If the Piece is in the first 2, or last 2 rows, there will be a piece there by default
 		if(x == 0 || x == 1 || x == 6 || x == 7) {
-		
+
 			// By default the colour of the piece is black, if it is in the last 2 rows it is white
 			String colour = "black";
 			if(x == 6 || x == 7) {
 				colour = "white";
 			}
-			
+
 			// By default the Piece is a pawn, if it should a different piece it is changed to that
-			piece = new Pawn(x, y, colour);
-			
+			piece = new Pawn(y, x, colour);
+
 			if(x == 0 || x == 7) {
 				// Based on the column the Piece is in it will be a different Piece by default
 				// Column 0 and column 7 = Rook
@@ -103,13 +106,15 @@ public class Board implements EventHandler<ActionEvent> {
 				}
 			}
 		}
-			
+
 		return piece;
 	}
+
+
 
 	@Override
 	public void handle(ActionEvent event) {
 		buttonHandler.handlerCaller(event);
-		
+
 	}
 }
