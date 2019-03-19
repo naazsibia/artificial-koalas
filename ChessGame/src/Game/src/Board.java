@@ -51,11 +51,11 @@ public class Board {
 		}
 
 		private Piece defaultPiece(int y, int x) {
-			// This helper method gives the Piece that is the given position at the start of the game.
+			// This helper method gives the Piece that is in the given position at the start of the game.
 			// By default the Piece is null
 			Piece piece = null;
 
-			//If the Piece is in the first 2, or last 2 rows, there will be a piece there by default
+			//If the Piece is in the first 2, or last 2 rows, there will be a piece there
 			if(x == 0 || x == 1 || x == 6 || x == 7) {
 
 				// By defult the colour of the piece is black, if it is in the last 2 rows it is white
@@ -64,7 +64,7 @@ public class Board {
 					colour = "white";
 				}
 
-				// By default the Piece is a pawn, if it should a different piece it is changed to that
+				// By default the Piece is a pawn, if it should be a different piece it is changed
 				piece = new Pawn(y, x, colour);
 
 				if(x == 0 || x == 7) {
