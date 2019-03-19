@@ -1,3 +1,6 @@
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+
 /**
  * This class functions as the game board and stores
  * information on the current board state
@@ -5,24 +8,26 @@
  * @author: Jonathan Martin
  *   
  */
-public class Board {
+public class Board implements EventHandler<ActionEvent> {
 	private PieceButton[][] boardModel;
 	private int currentPlayer;
 	private PieceButton selectedPiece;
-	
+	private PieceHandlerCaller buttonHandler; 
 	public Board() {
 		this.boardModel = new PieceButton[8][8];
+		buttonHandler = new PieceHandlerCaller(this);
 		// Create 64 PieceButtons, one for each position on the board 
 		boolean isWhite = true;
-		for (int x = 0; x < 8; x = x+1) {
+		for (int x = 0; x < 8; x = x + 1) {
 			PieceButton[] row = new PieceButton[8];
 			for (int y = 0; y < 8; y = y+1) {
 				if (isWhite) {
-					row[y] = new PieceButton(new Position(y, x), false, defaultPiece(y, x), 0);
+					row[y] = new PieceButton(new Position(x, y), true, defaultPiece(x, y), 0);
 				} 
 				else {
-					row[y] = new PieceButton(new Position(y, x), false, defaultPiece(y, x), 1);
+					row[y] = new PieceButton(new Position(x, y), true, defaultPiece(x, y), 1);
 				}
+				row[y].setOnAction(this);
 				isWhite = !isWhite;
 			}
 			this.boardModel[x] = row;
@@ -57,7 +62,7 @@ public class Board {
 		this.selectedPiece = pb;
 	}
 	
-	private Piece defaultPiece(int y, int x) {
+	private Piece defaultPiece(int x, int y) {
 		// This helper method gives the Piece that is the given position at the start of the game.
 		// By default the Piece is null
 		Piece piece = null;
@@ -72,7 +77,7 @@ public class Board {
 			}
 			
 			// By default the Piece is a pawn, if it should a different piece it is changed to that
-			piece = new Pawn(y, x, colour);
+			piece = new Pawn(x, y, colour);
 			
 			if(x == 0 || x == 7) {
 				// Based on the column the Piece is in it will be a different Piece by default
@@ -100,5 +105,11 @@ public class Board {
 		}
 			
 		return piece;
+	}
+
+	@Override
+	public void handle(ActionEvent event) {
+		buttonHandler.handlerCaller(event);
+		
 	}
 }
