@@ -1,9 +1,12 @@
 
+import java.util.Observable;
+import java.util.Observer;
+
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-public class View {
+public class View implements Observer {
 	
 	private Board board;
 	private ChessPanel chessPanel;
@@ -12,6 +15,7 @@ public class View {
 	public View(Board board, Stage stage) {
 
 		this.board = board;
+		board.addObserver(this);
 		initUI(stage);
 	}
 	
@@ -28,5 +32,18 @@ public class View {
 		stage.setScene(scene);
 		stage.setTitle("DefinitelyNotAChessClone");
 		stage.show();
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		King k;
+		if(board.getCurrentPlayer() == 0) k = (King)board.getBlackKing().getPiece();
+		else k = (King)board.getWhiteKing().getPiece();
+		if(k.isCheckmated()) {
+			System.out.println("Game over");
+		}
+		board.switchTurn(); // switch turn
+		
+		
 	}
 }
