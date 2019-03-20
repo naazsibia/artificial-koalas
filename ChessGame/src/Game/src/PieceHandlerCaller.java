@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Observer;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -37,7 +38,7 @@ public class PieceHandlerCaller {
 		}
 		pieceHandlers.get(button.getId()).handle(event);;
 	}
+	
 
-
-
+	
 }

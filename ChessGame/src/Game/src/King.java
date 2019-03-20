@@ -35,13 +35,8 @@ public class King extends Piece{
 	 * Changes safety of King. If King was safe earlier, then safety is changed to false else 
 	 * it is changed to true.
 	 */
-	public void changeSafety() {
-		if(safe){
-			safe = false;
-		}
-		else{
-			safe = true;
-		}
+	public void setSafe(boolean safe) {
+		this.safe = safe;
 	}
 	
 	/**
