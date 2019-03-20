@@ -32,7 +32,9 @@ public class RookHandler extends PieceHandler {
 		int row = button.getPosition().getX();
 		int col = button.getPosition().getY();
 		button.select();  // select button itself
-		 
+		King k; // king to watch out for
+		if(piece.getColor().equals("black")) k = (King)board.getWhiteKing().getPiece();
+		else k = (King)board.getWhiteKing().getPiece();
 		// select buttons above
 		int rowToSelect = row - 1;
 		boolean pieceFound = false;
@@ -40,7 +42,10 @@ public class RookHandler extends PieceHandler {
 			Piece pieceHere = boardModel[rowToSelect][col].getPiece();
 			if( pieceHere != null) {
 				pieceFound = true; // we stop
-				if(pieceHere.getColor() != piece.getColor()) boardModel[rowToSelect][col].select(); // select opponent
+				if(pieceHere.getColor() != piece.getColor()) {
+					boardModel[rowToSelect][col].select(); // select opponent
+					if(pieceHere.type().equals("King")) k.setSafe(false);
+				}
 				
 			}
 			else {
@@ -56,7 +61,10 @@ public class RookHandler extends PieceHandler {
 			Piece pieceHere = boardModel[rowToSelect][col].getPiece();
 			if(boardModel[rowToSelect][col].getPiece() != null) {
 				pieceFound = true; // we stop
-				if(pieceHere.getColor() != piece.getColor()) boardModel[rowToSelect][col].select();
+				if(pieceHere.getColor() != piece.getColor()) {
+					boardModel[rowToSelect][col].select();
+					if(pieceHere.type().equals("King")) k.setSafe(false);
+				}
 			}
 
 			else {
@@ -72,7 +80,10 @@ public class RookHandler extends PieceHandler {
 			Piece pieceHere = boardModel[row][colToSelect].getPiece();
 			if(boardModel[row][colToSelect].getPiece() != null) {
 				pieceFound = true;
-				if(pieceHere.getColor() != piece.getColor()) boardModel[row][colToSelect].select();
+				if(pieceHere.getColor() != piece.getColor()) {
+					boardModel[row][colToSelect].select();
+					if(pieceHere.type().equals("King")) k.setSafe(false);
+				}
 			}
 			
 			else {
@@ -88,7 +99,10 @@ public class RookHandler extends PieceHandler {
 			Piece pieceHere = boardModel[row][colToSelect].getPiece();
 			if(boardModel[row][colToSelect].getPiece() != null) {
 				pieceFound = true; // 
-				if(pieceHere.getColor() != piece.getColor()) boardModel[row][colToSelect].select();
+				if(pieceHere.getColor() != piece.getColor()) {
+					boardModel[row][colToSelect].select();
+					if(pieceHere.type().equals("King")) k.setSafe(false);
+				}
 			}
 			else {
 				boardModel[row][colToSelect].select(); // select piece

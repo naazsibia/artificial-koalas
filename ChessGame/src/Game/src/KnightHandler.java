@@ -34,7 +34,9 @@ public class KnightHandler extends PieceHandler {
 		int row = button.getPosition().getX();
 		int col = button.getPosition().getY();
 		button.select();  // select button itself
-		
+		King k; // king to watch out for
+		if(piece.getColor().equals("black")) k = (King) board.getWhiteKing().getPiece();
+		else k = (King) board.getWhiteKing().getPiece();
 		// 2 up
 		if(row > 1) {
 			// 1 left
@@ -42,6 +44,9 @@ public class KnightHandler extends PieceHandler {
 				Piece pieceAtButton = boardModel[row - 2][col - 1].getPiece();
 				if(pieceAtButton == null || pieceAtButton.getColor() != piece.getColor()) {
 					boardModel[row - 2][col - 1].select();
+					if(pieceAtButton != null && pieceAtButton.type().equals("King")) {
+						k.setSafe(false);
+					}
 				}
 			}
 			
@@ -50,6 +55,9 @@ public class KnightHandler extends PieceHandler {
 				Piece pieceAtButton = boardModel[row - 2][col + 1].getPiece();
 				if(pieceAtButton == null || pieceAtButton.getColor() != piece.getColor()) {
 					boardModel[row - 2][col + 1].select();
+					if(pieceAtButton != null && pieceAtButton.type().equals("King")) {
+						k.setSafe(false);
+					}
 				}
 			}
 		}
@@ -60,6 +68,9 @@ public class KnightHandler extends PieceHandler {
 				Piece pieceAtButton = boardModel[row + 2][col - 1].getPiece();
 				if(pieceAtButton == null || pieceAtButton.getColor() != piece.getColor()) {
 					boardModel[row + 2][col - 1].select();
+					if(pieceAtButton != null && pieceAtButton.type().equals("King")) {
+						k.setSafe(false);
+					}
 				}
 			}
 			
@@ -68,6 +79,9 @@ public class KnightHandler extends PieceHandler {
 				Piece pieceAtButton = boardModel[row + 2][col + 1].getPiece();
 				if(pieceAtButton == null || pieceAtButton.getColor() != piece.getColor()) {
 					boardModel[row + 2][col + 1].select();
+					if(pieceAtButton != null && pieceAtButton.type().equals("King")) {
+						k.setSafe(false);
+					}
 				}
 			}	
 		}
@@ -79,6 +93,9 @@ public class KnightHandler extends PieceHandler {
 				Piece pieceAtButton = boardModel[row - 1][col - 2].getPiece();
 				if(pieceAtButton == null || pieceAtButton.getColor() != piece.getColor()) {
 					boardModel[row - 1][col - 2].select();
+					if(pieceAtButton != null && pieceAtButton.type().equals("King")) {
+						k.setSafe(false);
+					}
 				}
 			}
 			
@@ -87,6 +104,9 @@ public class KnightHandler extends PieceHandler {
 				Piece pieceAtButton = boardModel[row - 1][col + 2].getPiece();
 				if(pieceAtButton == null || pieceAtButton.getColor() != piece.getColor()) {
 					boardModel[row - 1][col + 2].select();
+					if(pieceAtButton != null && pieceAtButton.type().equals("King")) {
+						k.setSafe(false);
+					}
 				}
 			}
 		}
@@ -98,6 +118,9 @@ public class KnightHandler extends PieceHandler {
 				Piece pieceAtButton = boardModel[row + 1][col - 2].getPiece();
 				if(pieceAtButton == null || pieceAtButton.getColor() != piece.getColor()) {
 					boardModel[row + 1][col - 2].select();
+					if(pieceAtButton != null && pieceAtButton.type().equals("King")) {
+						k.setSafe(false);
+					}
 				}
 			}
 			
@@ -106,6 +129,9 @@ public class KnightHandler extends PieceHandler {
 				Piece pieceAtButton = boardModel[row + 1][col + 2].getPiece();
 				if(pieceAtButton == null || pieceAtButton.getColor() != piece.getColor()) {
 					boardModel[row + 1][col + 2].select();
+					if(pieceAtButton != null && pieceAtButton.type().equals("King")) {
+						k.setSafe(false);
+					}
 				}
 			}
 		}

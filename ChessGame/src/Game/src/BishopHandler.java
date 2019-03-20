@@ -39,7 +39,9 @@ public class BishopHandler extends PieceHandler {
 		int row = button.getPosition().getX();
 		int col = button.getPosition().getY();
 		button.select();  // select button itself
-		
+		King k; // king to watch out for
+		if(piece.getColor().equals("black")) k = (King) board.getWhiteKing().getPiece();
+		else k = (King)board.getBlackKing().getPiece();
 		//diagonal up-left
 		int upperRow = row - 1;
 		int leftRow = col - 1;
@@ -48,7 +50,10 @@ public class BishopHandler extends PieceHandler {
 			Piece pieceHere = boardModel[upperRow][leftRow].getPiece();
 			if( pieceHere != null) {
 				pieceFound = true; // we stop
-				if(pieceHere.getColor() != piece.getColor()) button.select(); // select opponent
+				if(pieceHere.getColor() != piece.getColor()) {
+					boardModel[upperRow][leftRow].select(); // select opponent
+					if(pieceHere.type().equals("King")) k.setSafe(false);
+				}
 				
 			}
 			else {
@@ -66,7 +71,10 @@ public class BishopHandler extends PieceHandler {
 			Piece pieceHere = boardModel[upperRow][rightRow].getPiece();
 			if( pieceHere != null) {
 				pieceFound = true; // we stop
-				if(pieceHere.getColor() != piece.getColor()) button.select(); // select opponent
+				if(pieceHere.getColor() != piece.getColor()) {
+					boardModel[upperRow][rightRow].select(); // select opponent
+					if(pieceHere.type().equals("King")) k.setSafe(false);
+				}
 				
 			}
 			else {
@@ -84,7 +92,10 @@ public class BishopHandler extends PieceHandler {
 			Piece pieceHere = boardModel[downRow][leftRow].getPiece();
 			if( pieceHere != null) {
 				pieceFound = true; // we stop
-				if(pieceHere.getColor() != piece.getColor()) button.select(); // select opponent
+				if(pieceHere.getColor() != piece.getColor()) {
+					boardModel[downRow][leftRow].select(); // select opponent
+					if(pieceHere.type().equals("King")) k.setSafe(false);
+				}
 				
 			}
 			else {
@@ -103,7 +114,10 @@ public class BishopHandler extends PieceHandler {
 			Piece pieceHere = boardModel[downRow][rightRow].getPiece();
 			if( pieceHere != null) {
 				pieceFound = true; // we stop
-				if(pieceHere.getColor() != piece.getColor()) button.select(); // select opponent
+				if(pieceHere.getColor() != piece.getColor()) {
+					boardModel[downRow][rightRow].select(); // select opponent
+					if(pieceHere.type().equals("King")) k.setSafe(false);
+				}
 				
 			}
 			else {
