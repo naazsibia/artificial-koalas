@@ -18,4 +18,13 @@ public class ChessPanel extends GridPane {
 	        }
 		}
 	}
+	
+	public void reset() {
+		this.board.reset();
+		for (int x = 0; x < 8; x++) {
+			for (int y = 0; y < 8; y++) {
+	            this.add(board.getBoardModel()[x][y], y, x, 1, 1);
+	        }
+		}
+	}
 }

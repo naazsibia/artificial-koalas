@@ -63,6 +63,7 @@ public class Board extends Observable implements EventHandler<ActionEvent> {
 		}
 
 		this.currentPlayer = 0;
+		switchTurn();
 		this.selectedPiece = null;
 	}
 
@@ -105,10 +106,25 @@ public class Board extends Observable implements EventHandler<ActionEvent> {
 
 
 	public void switchTurn() {
+		String colour;
 		if(this.currentPlayer == 0) {
 			this.currentPlayer = 1;
+			colour = "white";
 		}else {
 			this.currentPlayer = 0;
+			colour = "black";
+		}
+		for(int row = 0; row < 8; row ++) {
+			for(int col = 0; col < 8; col++) {
+				PieceButton button = boardModel[row][col];
+				Piece piece = button.getPiece();
+				if(piece != null && !(piece.getColor().equals(colour))){
+					button.setCanSelect(false);
+				}
+				else if(piece != null) {
+					button.setCanSelect(true);
+				}
+			}
 		}
 	}
 
@@ -188,5 +204,36 @@ public class Board extends Observable implements EventHandler<ActionEvent> {
 		// trying to notify view
 		notifyObservers(this);
 		
+	}
+	
+	public void reset() {
+		this.boardModel = new PieceButton[8][8];
+		buttonHandler = new PieceHandlerCaller(this);
+		boolean isWhite = true;
+		for (int x = 0; x < 8; x = x + 1) {
+			PieceButton[] row = new PieceButton[8];
+			for (int y = 0; y < 8; y = y+1) {
+				Piece defaultPiece = defaultPiece(x, y);
+				if (isWhite) {
+					row[y] = new PieceButton(new Position(x, y), true, defaultPiece, 0);
+				} 
+				else {
+					row[y] = new PieceButton(new Position(x, y), true, defaultPiece, 1);
+				}
+				// Store kings to check if they are unsafe
+				if(defaultPiece != null && defaultPiece.type().equals("King")) {
+					if(defaultPiece.getColor().equals("black")) blackKing = row[y];
+					else whiteKing = row[y];
+				}
+				row[y].setOnAction(this);
+				isWhite = !isWhite;
+			}
+			this.boardModel[x] = row;
+			isWhite = !isWhite;
+		}
+
+		this.currentPlayer = 0;
+		switchTurn();
+		this.selectedPiece = null;
 	}
 }
