@@ -77,6 +77,10 @@ public abstract class PieceHandler implements EventHandler<ActionEvent>{
 			}
 			else {
 				button.setPiece(selectedPiece); 
+				if(selectedPiece.type().equals("King")) {
+					if(selectedPiece.getColor().equals("black")) board.setBlackKing(button);
+					else board.setWhiteKing(button);
+				}
 				selectedButton.select(); // will deselect it
 				selectedButton.setPiece(null); // that piece moved here
 				button.select(); // will deselect it
