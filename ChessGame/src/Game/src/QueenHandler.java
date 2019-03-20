@@ -31,6 +31,9 @@ public class QueenHandler extends PieceHandler{
 		Piece piece = button.getPiece();
 		int row = button.getPosition().getX();
 		int col = button.getPosition().getY();
+		if(!button.isCanSelect()) {
+			return;
+		}
 		button.select();  // select button itself
 		King k; // king to watch out for
 		if(piece.getColor().equals("black")) k = (King)board.getWhiteKing().getPiece();

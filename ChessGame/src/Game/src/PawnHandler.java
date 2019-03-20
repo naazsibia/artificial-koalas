@@ -30,6 +30,9 @@ public class PawnHandler extends PieceHandler {
 		PieceButton[][] boardModel = getBoardModel();
 		Board board = getBoard();
 		PieceButton button = (PieceButton) event.getSource();
+		if(!button.isCanSelect()) {
+			return;
+		}
 		board.setSelectedPiece(button);
 		Piece piece = button.getPiece();
 		int row = button.getPosition().getX();
@@ -62,7 +65,7 @@ public class PawnHandler extends PieceHandler {
 			if(row < 7 && col < 7) {
 				Piece bottomRightPiece = boardModel[row + 1][col + 1].getPiece();
 				if(bottomRightPiece != null && bottomRightPiece.getColor().equals("white")) {
-					boardModel[row + 1][col - 1].select();
+					boardModel[row + 1][col + 1].select();
 					if(bottomRightPiece.type().equals("King")) {
 						k.setSafe(false);
 					}
@@ -76,7 +79,6 @@ public class PawnHandler extends PieceHandler {
 			}
 			if(row == 6 && boardModel[row - 2][col].getPiece() == null) {
 				boardModel[row - 2][col].select();
-				System.out.println(k.isSafe());
 			}
 			//check if you can attack top left 
 			if(row > 0 && col > 0) {
@@ -85,7 +87,6 @@ public class PawnHandler extends PieceHandler {
 					boardModel[row - 1][col - 1].select();
 					if(topLeftPiece.type().equals("King")) {
 						k.setSafe(false);
-						System.out.println(k.isSafe());
 					}
 				}
 				
@@ -96,7 +97,6 @@ public class PawnHandler extends PieceHandler {
 				if(topRightPiece != null  && topRightPiece.getColor().equals("black")) {
 					if(topRightPiece.type().equals("King")) {
 						k.setSafe(false);
-						System.out.println(k.isSafe());
 					}
 					boardModel[row - 1][col + 1].select();
 				}

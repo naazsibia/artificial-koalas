@@ -25,10 +25,13 @@ public class KnightHandler extends PieceHandler {
 			super.handle(event);
 			return;
 		}
-		
+	
 		PieceButton[][] boardModel = getBoardModel();
 		Board board = getBoard();
 		PieceButton button = (PieceButton) event.getSource();
+		if(!button.isCanSelect()) {
+			return;
+		}
 		board.setSelectedPiece(button);
 		Piece piece = button.getPiece();
 		int row = button.getPosition().getX();

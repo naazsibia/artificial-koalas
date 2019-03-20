@@ -66,6 +66,7 @@ public abstract class PieceHandler implements EventHandler<ActionEvent>{
 		// selected same button again, so deselect
 		if (selectedButton == button && button.isSelected()) {
 			button.select(); // deselect
+			button.setCanSelect(true);
 			
 		}
 		
@@ -80,10 +81,9 @@ public abstract class PieceHandler implements EventHandler<ActionEvent>{
 				selectedButton.setPiece(null); // that piece moved here
 				button.select(); // will deselect it
 			}
-			board.notifyView();
-			
+			button.setCanSelect(true);
+			board.notifyView();	
 		}
-		
 		PieceButton[][] boardModel = getBoardModel();
 		for(int row = 0; row < 8; row ++ ) {
 			for(int col = 0; col < 8; col ++) {
