@@ -55,10 +55,10 @@ public class PieceButton extends Button{
 	public void setCanSelect(boolean canSelect) {
 		this.canSelect = canSelect;
 		if(!canSelect) {
-			this.setDisable(true);
+			//this.setDisable(true);
 			return;
 		}
-		this.setDisable(false);
+		//this.setDisable(false);
 		
 	}
 	/**
@@ -103,6 +103,7 @@ public class PieceButton extends Button{
 	 */
 	public void setSelected(boolean selected) {
 		this.selected = selected;
+		setCanSelect(selected); 
 	}
 	/** Select current button if unselected, or else deselect it by changing image.
 	 * @return whether true iff button is selected
@@ -150,7 +151,7 @@ public class PieceButton extends Button{
 	public void changeImage() {
 		if(isSelected()) {
 			if(piece != null) {
-				Image image = new Image(this.getClass().getResource(piece.toString() + "S" + this.toString() + ".jpg").toString());
+				Image image = new Image(this.getClass().getResource("Icons/" + piece.toString() + "S" + this.toString() + ".jpg").toString());
 				ImageView iv = new ImageView(image);
 				this.setGraphic(iv);
 				setMinWidth(image.getWidth());
@@ -160,8 +161,8 @@ public class PieceButton extends Button{
 				return;
 			}
 			Image image;
-			if(color == 0) image = new Image(this.getClass().getResource("blue.jpg").toString());
-			else image = new Image(this.getClass().getResource("maroon.jpg").toString());
+			if(color == 0) image = new Image(this.getClass().getResource("Icons/blue.jpg").toString());
+			else image = new Image(this.getClass().getResource("Icons/maroon.jpg").toString());
 			ImageView iv = new ImageView(image);
 			this.setGraphic(iv);
 			setMinWidth(image.getWidth());
@@ -173,16 +174,16 @@ public class PieceButton extends Button{
 		Image image;
 		if(piece != null) {
 			if (color == 0) {
-				image = new Image(this.getClass().getResource(piece.toString() + "UW.jpg").toString());
+				image = new Image(this.getClass().getResource("Icons/" + piece.toString() + "UW.jpg").toString());
 			}else {
-				image = new Image(this.getClass().getResource(piece.toString() + "UB.jpg").toString());
+				image = new Image(this.getClass().getResource("Icons/" + piece.toString() + "UB.jpg").toString());
 			}
 		} 
 		else {
 			if(color == 0) {
-				image = new Image(this.getClass().getResource("white.jpg").toString());
+				image = new Image(this.getClass().getResource("Icons/white.jpg").toString());
 			} else {
-				image = new Image(this.getClass().getResource("black.jpg").toString());
+				image = new Image(this.getClass().getResource("Icons/black.jpg").toString());
 			}
 		}
 		ImageView iv = new ImageView(image);
