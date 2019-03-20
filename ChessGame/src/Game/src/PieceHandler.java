@@ -1,3 +1,5 @@
+import java.util.Observable;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -34,29 +36,61 @@ public abstract class PieceHandler implements EventHandler<ActionEvent>{
 	public void setBoard(Board board) {
 		this.board = board;
 	}
+	/**
+	 * Handles the event in which a Piece
+	 * is clicked. By default, this handles
+	 * the event in which the piece is attacked.
+	 */
 	@Override
 	public void handle(ActionEvent event) {
 		Board board = getBoard();
 		PieceButton button = (PieceButton) event.getSource();
-		//in case this isn't the first button selected -- the pawn has been attacked
+		//in case this isn't the first button selected -- the piece has been attacked
 		PieceButton selectedButton = board.getSelectedPiece();
+		if(selectedButton == null) { // nothing was selected previously
+			return;
+		}
 		Piece selectedPiece = selectedButton.getPiece();
+		if(selectedPiece == null) { // nothing was selected previously
+			return;
+		}
+		board.setSelectedPiece(null);
 		
-		if (selectedButton == button) {
+		// King to watch for
+		King k;
+		if(board.getCurrentPlayer() == 0) k = (King)board.getBlackKing().getPiece();
+		else  k = (King)board.getWhiteKing().getPiece();
+		
+		
+		
+		// selected same button again, so deselect
+		if (selectedButton == button && button.isSelected()) {
 			button.select(); // deselect
-			return;
+			
 		}
 		
-		if(selectedPiece != null) {
-			button.select(); // will deselect it 
-			button.setPiece(selectedPiece); 
-			selectedButton.select(); // will deselect it
-			selectedButton.setPiece(null); // that piece moved here
-			return;
+		// attacked another piece or moved to a blank location
+		else if(button.isSelected()){
+			if(button.getPiece() != null && button.getPiece().type().equals("King")) {
+				k.changeCheckmated(); // king got checkmated
+			}
+			else {
+				button.setPiece(selectedPiece); 
+				selectedButton.select(); // will deselect it
+				selectedButton.setPiece(null); // that piece moved here
+				button.select(); // will deselect it
+			}
+			board.notifyView();
+			
 		}
-	}
-
-	// get PieceHandler to check if King's safe as well 
-	
-	
+		
+		PieceButton[][] boardModel = getBoardModel();
+		for(int row = 0; row < 8; row ++ ) {
+			for(int col = 0; col < 8; col ++) {
+				if(boardModel[row][col].isSelected()) {
+					boardModel[row][col].select(); // will deselect it
+				}
+			}
+		}	
+	}	
 }

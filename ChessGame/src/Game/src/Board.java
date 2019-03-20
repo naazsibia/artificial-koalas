@@ -1,3 +1,5 @@
+import java.util.Observable;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
@@ -8,12 +10,31 @@ import javafx.event.EventHandler;
  * @author: Jonathan Martin
  *   
  */
-public class Board implements EventHandler<ActionEvent> {
+public class Board extends Observable implements EventHandler<ActionEvent> {
+	/**
+	 * @return the buttonHandler
+	 */
+	public PieceHandlerCaller getButtonHandler() {
+		return buttonHandler;
+	}
+
+
+
+	/**
+	 * @param buttonHandler the buttonHandler to set
+	 */
+	public void setButtonHandler(PieceHandlerCaller buttonHandler) {
+		this.buttonHandler = buttonHandler;
+	}
+
+
+
 	private PieceButton[][] boardModel;
 	private int currentPlayer;
 	private PieceButton selectedPiece;
 	private PieceHandlerCaller buttonHandler; 
-
+	private PieceButton blackKing;
+	private PieceButton whiteKing;
 	public Board() {
 		this.boardModel = new PieceButton[8][8];
 		buttonHandler = new PieceHandlerCaller(this);
@@ -22,11 +43,17 @@ public class Board implements EventHandler<ActionEvent> {
 		for (int x = 0; x < 8; x = x + 1) {
 			PieceButton[] row = new PieceButton[8];
 			for (int y = 0; y < 8; y = y+1) {
+				Piece defaultPiece = defaultPiece(x, y);
 				if (isWhite) {
-					row[y] = new PieceButton(new Position(x, y), true, defaultPiece(x, y), 0);
+					row[y] = new PieceButton(new Position(x, y), true, defaultPiece, 0);
 				} 
 				else {
-					row[y] = new PieceButton(new Position(x, y), true, defaultPiece(x, y), 1);
+					row[y] = new PieceButton(new Position(x, y), true, defaultPiece, 1);
+				}
+				// Store kings to check if they are unsafe
+				if(defaultPiece != null && defaultPiece.type().equals("King")) {
+					if(defaultPiece.getColor().equals("black")) blackKing = row[y];
+					else whiteKing = row[y];
 				}
 				row[y].setOnAction(this);
 				isWhite = !isWhite;
@@ -37,6 +64,42 @@ public class Board implements EventHandler<ActionEvent> {
 
 		this.currentPlayer = 0;
 		this.selectedPiece = null;
+	}
+
+
+
+	/**
+	 * @return the blackKing
+	 */
+	public PieceButton getBlackKing() {
+		return blackKing;
+	}
+
+
+
+	/**
+	 * @param blackKing the blackKing to set
+	 */
+	public void setBlackKing(PieceButton blackKing) {
+		this.blackKing = blackKing;
+	}
+
+
+
+	/**
+	 * @return the whiteKing
+	 */
+	public PieceButton getWhiteKing() {
+		return whiteKing;
+	}
+
+
+
+	/**
+	 * @param whiteKing the whiteKing to set
+	 */
+	public void setWhiteKing(PieceButton whiteKing) {
+		this.whiteKing = whiteKing;
 	}
 
 
@@ -116,5 +179,14 @@ public class Board implements EventHandler<ActionEvent> {
 	public void handle(ActionEvent event) {
 		buttonHandler.handlerCaller(event);
 
+	}
+
+
+
+	public void notifyView() {
+		setChanged(); 
+		// trying to notify view
+		notifyObservers(this);
+		
 	}
 }
