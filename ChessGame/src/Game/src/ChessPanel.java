@@ -1,6 +1,3 @@
-import java.awt.Button;
-import javafx.scene.control.Label;
-
 import javafx.scene.layout.GridPane;
 
 public class ChessPanel extends GridPane {
@@ -26,5 +23,6 @@ public class ChessPanel extends GridPane {
 	            this.add(board.getBoardModel()[x][y], y, x, 1, 1);
 	        }
 		}
+		view.setCurrentPlayerLabels();
 	}
 }

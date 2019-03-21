@@ -25,6 +25,7 @@ public class View implements Observer, EventHandler<ActionEvent> {
 	private Stage popup;
 	private Label player1;
 	private Label player2;
+	
 	public View(Board board, Stage stage) {
 
 		this.board = board;
@@ -33,9 +34,12 @@ public class View implements Observer, EventHandler<ActionEvent> {
 		initUI(stage);
 	}
 	
+	public ChessPanel getChessPanel() {
+		return this.chessPanel;
+	}
 	private void initUI(Stage stage) {
 		this.chessPanel = new ChessPanel(this.board, this);
-		this.mainPanel = new MainPanel(this);
+		this.mainPanel = new MainPanel(this.board, this);
 		player1 = new Label("Player One");
 		player1.setAlignment(Pos.CENTER);
 		player1.setStyle("-fx-font-weight: bold");
@@ -57,7 +61,7 @@ public class View implements Observer, EventHandler<ActionEvent> {
 		root.setBottom(player1);
 		
 
-		Scene scene = new Scene(root, 500, 540, Color.BLACK);
+		Scene scene = new Scene(root, 570, 550, Color.BLACK);
 		stage.setScene(scene);
 		stage.setTitle("DefinitelyNotAChessClone");
 		stage.show();
@@ -73,7 +77,13 @@ public class View implements Observer, EventHandler<ActionEvent> {
 			final Popup popup = new Popup();
 	        showStage();
 		}
-		if(currentPlayer == 1) {
+		setCurrentPlayerLabels();
+		board.switchTurn(); // switch turn
+		
+	}
+	
+	public void setCurrentPlayerLabels() {
+		if(board.getCurrentPlayer() == 1) {
 			player1.setTextFill(Color.BLACK);
 			player2.setTextFill(Color.RED);
 		}
@@ -81,9 +91,6 @@ public class View implements Observer, EventHandler<ActionEvent> {
 			player1.setTextFill(Color.RED);
 			player2.setTextFill(Color.BLACK);
 		}
-		
-		board.switchTurn(); // switch turn
-		
 	}
 	
 	public void showStage(){
