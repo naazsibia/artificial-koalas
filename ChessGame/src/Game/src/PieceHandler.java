@@ -45,31 +45,35 @@ public abstract class PieceHandler implements EventHandler<ActionEvent>{
 	public void handle(ActionEvent event) {
 		Board board = getBoard();
 		PieceButton button = (PieceButton) event.getSource();
+				
 		//in case this isn't the first button selected -- the piece has been attacked
 		PieceButton selectedButton = board.getSelectedPiece();
 		if(selectedButton == null) { // nothing was selected previously
 			return;
 		}
 		Piece selectedPiece = selectedButton.getPiece();
+		Boolean validMove = true;
 		if(selectedPiece == null) { // nothing was selected previously
+			board.setSelectedPiece(null);
 			return;
 		}
-		board.setSelectedPiece(null);
+		if(!button.isSelected()) {
+			board.setSelectedPiece(null);
+			validMove = false;
+		}
 		
+		board.setSelectedPiece(null);
 		// King to watch for
 		King k;
 		if(board.getCurrentPlayer() == 0) k = (King)board.getBlackKing().getPiece();
 		else  k = (King)board.getWhiteKing().getPiece();
-		
-		
-		
+			
 		// selected same button again, so deselect
 		if (selectedButton == button && button.isSelected()) {
 			button.select(); // deselect
 			button.setCanSelect(true);
 			
-		}
-		
+		}	
 		// attacked another piece or moved to a blank location
 		else if(button.isSelected()){
 			if(button.getPiece() != null && button.getPiece().type().equals("King")) {
@@ -96,5 +100,8 @@ public abstract class PieceHandler implements EventHandler<ActionEvent>{
 				}
 			}
 		}	
+		if(!validMove) {
+			selectedButton.setCanSelect(true);
+		}
 	}	
 }
