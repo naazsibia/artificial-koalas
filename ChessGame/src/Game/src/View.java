@@ -5,7 +5,6 @@ import java.util.Observer;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,8 +12,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 public class View implements Observer, EventHandler<ActionEvent> {
@@ -40,7 +37,7 @@ public class View implements Observer, EventHandler<ActionEvent> {
 	}
 	private void initUI(Stage stage) {
 		this.chessPanel = new ChessPanel(this.board, this);
-		this.mainPanel = new MainPanel(this.board, this);
+		this.mainPanel = new MainPanel(this);
 		player1 = new Label("Player One");
 		player1.setAlignment(Pos.CENTER);
 		player1.setStyle("-fx-font-weight: bold");
@@ -75,7 +72,6 @@ public class View implements Observer, EventHandler<ActionEvent> {
 		if(currentPlayer == 0) k = (King)board.getBlackKing().getPiece();
 		else k = (King)board.getWhiteKing().getPiece();
 		if(k != null && k.isCheckmated()) {
-			final Popup popup = new Popup();
 	        showStage();
 		}
 		setCurrentPlayerLabels();

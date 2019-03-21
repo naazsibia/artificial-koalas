@@ -9,11 +9,9 @@ import javafx.scene.layout.GridPane;
 public class MainPanel extends GridPane implements EventHandler<ActionEvent> {
 	
 	private View view;
-	private Board board;
 
-	public MainPanel(Board board, View view) {
+	public MainPanel(View view) {
 		this.view = view;
-		this.board = board;
 		Button resetButton = new Button("Reset");
 		resetButton.setOnAction(this);
 		Button quitButton = new Button("Quit");
