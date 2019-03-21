@@ -45,7 +45,7 @@ THE ACCOMPANYING PROGRAM IS PROVIDED UNDER THE TERMS OF THIS ECLIPSE
 PUBLIC LICENSE ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION
 OF THE PROGRAM CONSTITUTES RECIPIENT'S ACCEPTANCE OF THIS AGREEMENT.
 
-A copy of the license can be found [here].(https://github.com/naazsibia/artificial-koalas/blob/master/LICENSE)
+A copy of the license can be found [here](https://github.com/naazsibia/artificial-koalas/blob/master/LICENSE).
 
 
 
