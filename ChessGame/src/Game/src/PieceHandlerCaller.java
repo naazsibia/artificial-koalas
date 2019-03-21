@@ -5,7 +5,11 @@ import java.util.Observer;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
-
+/**
+ * This class calls the appropriate PieceHandler when a Piece is clicked
+ * @author naazsibia
+ *
+ */
 public class PieceHandlerCaller {
 	private Map <String, EventHandler<ActionEvent>> pieceHandlers = new HashMap<String, EventHandler<ActionEvent>>();
 	private Board board;

@@ -2,10 +2,6 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-/**
- * 
- */
-
 /** This class enables clicking piece buttons, and selecting them. It stores whether the button has been 
  * selected and changes its image accordingly.
  * @author naazsibia

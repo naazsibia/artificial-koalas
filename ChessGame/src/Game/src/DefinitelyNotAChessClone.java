@@ -1,6 +1,10 @@
 import javafx.application.Application;
 import javafx.stage.Stage;
-
+/**
+ * This is a Chess application
+ * @author Saba Yar
+ *
+ */
 public class DefinitelyNotAChessClone extends Application {
 	
 	Board board; // Model

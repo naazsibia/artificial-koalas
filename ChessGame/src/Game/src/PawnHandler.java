@@ -20,7 +20,6 @@ public class PawnHandler extends PieceHandler {
 
 	/* Handles the event in which a Pawn is clicked
 	 */
-
 	public void handle(ActionEvent event) {
 		if(getBoard().getSelectedPiece() != null) {
 			super.handle(event);
