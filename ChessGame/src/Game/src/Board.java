@@ -28,7 +28,7 @@ public class Board extends Observable implements EventHandler<ActionEvent> {
 	}
 
 
-
+	//The boardModel stores an 8 x 8 double array that contains the current state of the board
 	private PieceButton[][] boardModel;
 	private int currentPlayer;
 	private PieceButton selectedPiece;
@@ -43,6 +43,8 @@ public class Board extends Observable implements EventHandler<ActionEvent> {
 		for (int x = 0; x < 8; x = x + 1) {
 			PieceButton[] row = new PieceButton[8];
 			for (int y = 0; y < 8; y = y+1) {
+				//The defaultPiece() function returns the piece 
+				//that is in the specified position at the start of the game
 				Piece defaultPiece = defaultPiece(x, y);
 				if (isWhite) {
 					row[y] = new PieceButton(new Position(x, y), true, defaultPiece, 0);
@@ -106,6 +108,10 @@ public class Board extends Observable implements EventHandler<ActionEvent> {
 
 
 	public void switchTurn() {
+		// Switches the current player
+		// When the current player changes, 
+		// all pieces of the previous player are set so that they cannot be selected
+		// and all the pieces of the new current player are set so that they can be selected
 		String colour;
 		if(this.currentPlayer == 0) {
 			this.currentPlayer = 1;
@@ -207,6 +213,7 @@ public class Board extends Observable implements EventHandler<ActionEvent> {
 	}
 	
 	public void reset() {
+		//resets the board state to be in the starting state
 		this.boardModel = new PieceButton[8][8];
 		buttonHandler = new PieceHandlerCaller(this);
 		boolean isWhite = true;
