@@ -5,6 +5,7 @@ import java.util.Observer;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -22,6 +23,8 @@ public class View implements Observer, EventHandler<ActionEvent> {
 	private MainPanel mainPanel;
 	private Stage mainStage;
 	private Stage popup;
+	private Label player1;
+	private Label player2;
 	public View(Board board, Stage stage) {
 
 		this.board = board;
@@ -33,14 +36,28 @@ public class View implements Observer, EventHandler<ActionEvent> {
 	private void initUI(Stage stage) {
 		this.chessPanel = new ChessPanel(this.board, this);
 		this.mainPanel = new MainPanel(this);
-
+		player1 = new Label("Player One");
+		player1.setAlignment(Pos.CENTER);
+		player1.setStyle("-fx-font-weight: bold");
+		
+		
+		player2 = new Label("Player Two");
+		player2.setAlignment(Pos.CENTER);
+		player2.setStyle("-fx-font-weight: bold");
+		player1.setTextFill(Color.RED);
+		
+		player1.setMinWidth(500);
+		player2.setMinWidth(500);
+		
 		BorderPane root = new BorderPane();
 		root.setPrefSize(1000, 1000);
-		//root.setPadding(new Insets(150, 0, 100, 100));
 		root.setCenter(this.chessPanel);
 		root.setLeft(this.mainPanel);
+		root.setTop(player2);
+		root.setBottom(player1);
+		
 
-		Scene scene = new Scene(root, 500, 500, Color.BLACK);
+		Scene scene = new Scene(root, 500, 540, Color.BLACK);
 		stage.setScene(scene);
 		stage.setTitle("DefinitelyNotAChessClone");
 		stage.show();
@@ -49,16 +66,23 @@ public class View implements Observer, EventHandler<ActionEvent> {
 	@Override
 	public void update(Observable o, Object arg) {
 		King k;
-		if(board.getCurrentPlayer() == 0) k = (King)board.getBlackKing().getPiece();
+		int currentPlayer = board.getCurrentPlayer();
+		if(currentPlayer == 0) k = (King)board.getBlackKing().getPiece();
 		else k = (King)board.getWhiteKing().getPiece();
 		if(k != null && k.isCheckmated()) {
-			//System.out.println("Game over");
 			final Popup popup = new Popup();
-			//stage.close();
 	        showStage();
 		}
-		board.switchTurn(); // switch turn
+		if(currentPlayer == 1) {
+			player1.setTextFill(Color.BLACK);
+			player2.setTextFill(Color.RED);
+		}
+		else {
+			player1.setTextFill(Color.RED);
+			player2.setTextFill(Color.BLACK);
+		}
 		
+		board.switchTurn(); // switch turn
 		
 	}
 	
