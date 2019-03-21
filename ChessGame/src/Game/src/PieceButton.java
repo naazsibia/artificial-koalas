@@ -55,11 +55,8 @@ public class PieceButton extends Button{
 	public void setCanSelect(boolean canSelect) {
 		this.canSelect = canSelect;
 		if(!canSelect) {
-			//this.setDisable(true);
 			return;
 		}
-		//this.setDisable(false);
-		
 	}
 	/**
 	 * @return the piece that this button represents
@@ -194,6 +191,9 @@ public class PieceButton extends Button{
 		this.setGraphic(iv);
 		return;
 	}
+	/**
+	 * Returns the string representation of this button
+	 */
 	public String toString() {
 		if(color == 0) return "W";
 		return "B";
