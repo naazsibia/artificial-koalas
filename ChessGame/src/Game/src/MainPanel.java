@@ -6,6 +6,10 @@ import javafx.geometry.Pos;
 
 import javafx.scene.layout.GridPane;
 
+/** This class stores the options that the user can select mid-game to reset or quit their game.
+ * @author sabayar
+ *
+ */
 public class MainPanel extends GridPane implements EventHandler<ActionEvent> {
 	
 	private View view;

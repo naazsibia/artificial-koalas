@@ -14,6 +14,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+/** This class oversees the operation of the HUD for the game,
+ * creating and updating the Panels shown to the user.
+ * @author sabayar
+ *
+ */
 public class View implements Observer, EventHandler<ActionEvent> {
 	
 	private Board board;
