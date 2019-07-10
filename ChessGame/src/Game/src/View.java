@@ -5,7 +5,6 @@ import java.util.Observer;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,10 +12,13 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
 
+/** This class oversees the operation of the HUD for the game,
+ * creating and updating the Panels shown to the user.
+ * @author sabayar
+ *
+ */
 public class View implements Observer, EventHandler<ActionEvent> {
 	
 	private Board board;
@@ -26,6 +28,7 @@ public class View implements Observer, EventHandler<ActionEvent> {
 	private Stage popup;
 	private Label player1;
 	private Label player2;
+	
 	public View(Board board, Stage stage) {
 
 		this.board = board;
@@ -34,6 +37,9 @@ public class View implements Observer, EventHandler<ActionEvent> {
 		initUI(stage);
 	}
 	
+	public ChessPanel getChessPanel() {
+		return this.chessPanel;
+	}
 	private void initUI(Stage stage) {
 		this.chessPanel = new ChessPanel(this.board, this);
 		this.mainPanel = new MainPanel(this);
@@ -58,7 +64,7 @@ public class View implements Observer, EventHandler<ActionEvent> {
 		root.setBottom(player1);
 		
 
-		Scene scene = new Scene(root, 500, 540, Color.BLACK);
+		Scene scene = new Scene(root, 570, 550, Color.BLACK);
 		stage.setScene(scene);
 		stage.setTitle("DefinitelyNotAChessClone");
 		stage.show();
@@ -71,10 +77,15 @@ public class View implements Observer, EventHandler<ActionEvent> {
 		if(currentPlayer == 0) k = (King)board.getBlackKing().getPiece();
 		else k = (King)board.getWhiteKing().getPiece();
 		if(k != null && k.isCheckmated()) {
-			final Popup popup = new Popup();
 	        showStage();
 		}
-		if(currentPlayer == 1) {
+		setCurrentPlayerLabels();
+		board.switchTurn(); // switch turn
+		
+	}
+	
+	public void setCurrentPlayerLabels() {
+		if(board.getCurrentPlayer() == 1) {
 			player1.setTextFill(Color.BLACK);
 			player2.setTextFill(Color.RED);
 		}
@@ -82,9 +93,6 @@ public class View implements Observer, EventHandler<ActionEvent> {
 			player1.setTextFill(Color.RED);
 			player2.setTextFill(Color.BLACK);
 		}
-		
-		board.switchTurn(); // switch turn
-		
 	}
 	
 	public void showStage(){

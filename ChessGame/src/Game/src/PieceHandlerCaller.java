@@ -1,10 +1,8 @@
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Observer;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Node;
 /**
  * This class calls the appropriate PieceHandler when a Piece is clicked
  * @author naazsibia
@@ -12,9 +10,7 @@ import javafx.scene.Node;
  */
 public class PieceHandlerCaller {
 	private Map <String, EventHandler<ActionEvent>> pieceHandlers = new HashMap<String, EventHandler<ActionEvent>>();
-	private Board board;
 	public PieceHandlerCaller(Board board) {
-		this.board = board;
 		EventHandler<ActionEvent> pawn = new PawnHandler(board);
 		EventHandler<ActionEvent> knight = new KnightHandler(board);
 		EventHandler<ActionEvent> rook = new RookHandler(board);

@@ -139,6 +139,7 @@ public class Board extends Observable implements EventHandler<ActionEvent> {
 	}
 
 	public int getCurrentPlayer() {
+		
 		return this.currentPlayer;
 	}
 

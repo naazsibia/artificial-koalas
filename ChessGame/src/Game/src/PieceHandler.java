@@ -1,8 +1,5 @@
-import java.util.Observable;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Node;
 
 /**
  * This class handles action events for specific piece buttons

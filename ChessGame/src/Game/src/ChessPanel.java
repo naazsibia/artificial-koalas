@@ -1,8 +1,10 @@
-import java.awt.Button;
-import javafx.scene.control.Label;
-
 import javafx.scene.layout.GridPane;
 
+/** This class creates the visual layout of the Chess board, based on the data from the Board Class.
+ * It can reset the board to its' initial state when necessary.
+ * @author sabayar
+ *
+ */
 public class ChessPanel extends GridPane {
 	
 	private Board board;
@@ -26,5 +28,6 @@ public class ChessPanel extends GridPane {
 	            this.add(board.getBoardModel()[x][y], y, x, 1, 1);
 	        }
 		}
+		view.setCurrentPlayerLabels();
 	}
 }
